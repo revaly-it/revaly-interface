@@ -1,9 +1,25 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+input:-webkit-autofill {
+  box-shadow: bg-transparent !important; /* bg-zinc-900 ou dark mode */
+  -webkit-text-fill-color: #fff !important; /* texto branco */
+  caret-color: white;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 
 @theme inline {
   --color-background: var(--background);
