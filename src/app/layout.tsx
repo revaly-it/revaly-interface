@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import 'flowbite'
 
 export const metadata = {
   title: 'Next.js',
