@@ -1,6 +1,7 @@
 import Highlights from '@/organisms/carousels/Highlights'
 import LatestReleases from '@/organisms/carousels/LatestReleases'
 import Publishers from '@/organisms/carousels/Publishers'
+import Trending from '@/organisms/carousels/Trending'
 import Footer from '@/organisms/footer/Footer'
 import Header from '@/organisms/header/Header'
 import Head from 'next/head'
@@ -16,6 +17,8 @@ export default function HomePage() {
         <Header />
 
         <main className="max-w-screen-xl mx-auto p-4">
+            <Trending />
+
             <LatestReleases />
 
             <Publishers />

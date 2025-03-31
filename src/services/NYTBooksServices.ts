@@ -9,8 +9,6 @@ export async function fetchHighlightsFromNYT(list: string = 'hardcover-fiction')
             params: { 'api-key': NYT_API_KEY },
         });
 
-        console.log('Highlights do NYT:', res.data.results.books);
-
         return res.data.results.books;
     } catch (error) {
         console.error('Erro ao buscar highlights do NYT:', error);
