@@ -1,10 +1,10 @@
 'use client'
 import Image from 'next/image'
 import Head from 'next/head'
-import LoginForm from '@/organisms/Login/LoginForm'
+import LoginForm from '@/organisms/login/LoginForm'
 import { Playfair_Display } from 'next/font/google'
 import { useState } from 'react'
-import RegisterForm from '@/organisms/Register/RegisterForm'
+import RegisterForm from '@/organisms/register/RegisterForm'
 
 const playfair = Playfair_Display({ subsets: ['latin'], weight: '700' })
 

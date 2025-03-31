@@ -1,7 +1,8 @@
-import Highlights from '@/organisms/Carousels/Highlights'
-import LatestReleases from '@/organisms/Carousels/LatestReleases'
-import Publishers from '@/organisms/Carousels/Publishers'
-import Header from '@/organisms/Header/Header'
+import Highlights from '@/organisms/carousels/Highlights'
+import LatestReleases from '@/organisms/carousels/LatestReleases'
+import Publishers from '@/organisms/carousels/Publishers'
+import Footer from '@/organisms/footer/Footer'
+import Header from '@/organisms/header/Header'
 import Head from 'next/head'
 
 export default function HomePage() {
@@ -9,21 +10,20 @@ export default function HomePage() {
     return (
         <>
         <Head>
-            <title>Revaly - Página Inicial</title>
+            <title>Revaly - Home</title>
         </Head>
 
         <Header />
 
         <main className="max-w-screen-xl mx-auto p-4">
-            {/* Carrossel: Livros em destaque */}
             <LatestReleases />
 
-            {/* Carrossel por gênero */}
             <Publishers />
 
-            {/* <Highlights /> */}
             <Highlights />
         </main>
+
+        <Footer />
         </>
     )
 }
