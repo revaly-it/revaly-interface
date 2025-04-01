@@ -1,7 +1,7 @@
 import { buildGoogleBooksQuery } from "@/constants/ApiRoutes";
 import { GoogleBook } from "@/interfaces/GoogleBook";
 
-export async function fetchLatestReleasesFromGoogle(maxResults = 20): Promise<GoogleBook[]> {
+export async function fetchLatestReleasesFromGoogle(maxResults: number): Promise<GoogleBook[]> {
     const url = buildGoogleBooksQuery.byNewests(maxResults);
 
     const res = await fetch(url);
@@ -10,7 +10,7 @@ export async function fetchLatestReleasesFromGoogle(maxResults = 20): Promise<Go
     return data.items || [];
 }
 
-export async function fetchBooksByPublisher(publisher: string, maxResults = 20): Promise<GoogleBook[]> {
+export async function fetchBooksByPublisher(publisher: string, maxResults: number): Promise<GoogleBook[]> {
     const url = buildGoogleBooksQuery.byPublisher(publisher, maxResults);
 
     const res = await fetch(url);
@@ -19,7 +19,7 @@ export async function fetchBooksByPublisher(publisher: string, maxResults = 20):
     return data.items || [];
 }
 
-export async function fetchBooksByGenre(genre: string, maxResults = 20): Promise<GoogleBook[]> {
+export async function fetchBooksByGenre(genre: string, maxResults: number): Promise<GoogleBook[]> {
     const url = buildGoogleBooksQuery.byGenre(genre, maxResults);
 
     const res = await fetch(url);
@@ -57,8 +57,6 @@ export async function fetchBookByISBNFromGoogle(isbn: string): Promise<GoogleBoo
     const data = await res.json();
 
     if (data.totalItems === 0) return null;
-
-    console.log('Response from Google Books:', data);
 
     return data.items[0];
 }

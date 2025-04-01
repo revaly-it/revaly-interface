@@ -7,7 +7,7 @@ export default function SearchBar() {
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("All categories");
     const [searchTerm, setSearchTerm] = useState("");
-    const categories = ["All categories", "Books", "Reviews", "Reports"];
+    const categories = ["All categories", "Title", "Author", "ISBN", "Publisher", "Subject"];
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 

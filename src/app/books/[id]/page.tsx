@@ -1,12 +1,8 @@
 import { UnifiedBook } from "@/interfaces/UnifiedBook";
-import {
-  mapGoogleBookToUnified,
-  mapNYTBookToUnified,
-} from "@/mappers/BookMappers";
+import {  mapGoogleBookToUnified } from "@/mappers/BookMappers";
 import Footer from "@/organisms/footer/Footer";
 import Header from "@/organisms/header/Header";
 import { fetchBookByISBNFromGoogle } from "@/services/GoogleBooksServices";
-import { fetchBookByISBNFromNYT } from "@/services/NYTBooksServices";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -19,17 +15,11 @@ export default async function BookDetailPage(props: {
     params: Promise<Props["params"]>;
 }) {
     const { id } = await props.params;
-    const [source, rawId] = id.split("_");
 
     let book: UnifiedBook | null = null;
 
-    if (source === "google") {
-        const googleRaw = await fetchBookByISBNFromGoogle(rawId);
-        if (googleRaw) book = mapGoogleBookToUnified(googleRaw);
-    } else if (source === "nyt") {
-        const nytRaw = await fetchBookByISBNFromNYT(rawId);
-        if (nytRaw) book = mapNYTBookToUnified(nytRaw);
-    }
+    const googleRaw = await fetchBookByISBNFromGoogle(id);
+    if (googleRaw) book = mapGoogleBookToUnified(googleRaw);
 
     if (!book) return notFound();
 

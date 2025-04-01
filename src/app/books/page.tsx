@@ -1,25 +1,37 @@
 'use client'
 
 import { UnifiedBook } from '@/interfaces/UnifiedBook';
-import { mapNYTBookToUnified } from '@/mappers/BookMappers';
+import { mapGoogleBookToUnified} from '@/mappers/BookMappers';
 import BookCard from '@/organisms/cards/BookCard';
 import Footer from '@/organisms/footer/Footer';
 import Header from '@/organisms/header/Header';
-import { fetchBookByGenreFromNYT } from '@/services/NYTBooksServices';
 import { useEffect, useState } from 'react';
 import { genreMap } from '@/utils/genreMap';
+import { fetchBooksByGenre } from '@/services/GoogleBooksServices';
+import { filterBooksWithISBN } from '@/utils/filterValidGoogleBooks';
+import BookCardSkeleton from '@/molecules/BookCardSkeleton';
 
 export default function Books() {
     const [books, setBooks] = useState<UnifiedBook[]>([]);
     const [selectedGenre, setSelectedGenre] = useState<string>('Fiction');
-
+    const [isLoading, setIsLoading] = useState(false);
+    const maxResults = 20;
     const genres = Object.keys(genreMap);
+
 
     useEffect(() => {
         async function loadBooks() {
-        const data = await fetchBookByGenreFromNYT(genreMap[selectedGenre]);
-        const unifiedBooks = data.map(mapNYTBookToUnified);
-        setBooks(unifiedBooks);
+
+            setIsLoading(true);
+
+            const data = await fetchBooksByGenre(genreMap[selectedGenre], maxResults);
+            
+            const validBooks = filterBooksWithISBN(data);
+
+            const unifiedBooks = validBooks.map(mapGoogleBookToUnified);
+
+            setBooks(unifiedBooks);
+            setIsLoading(false);
         }
 
         loadBooks();
@@ -57,9 +69,15 @@ export default function Books() {
             </aside>
 
             <section className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {books.map((book) => (
-                    <BookCard key={book.id} book={book} />
-                ))}
+                {isLoading ? (
+                    Array.from({ length: maxResults }).map((_, i) => (
+                        <BookCardSkeleton key={i} />
+                    ))
+                ) : (
+                    books.map((book) => (
+                        <BookCard key={book.id} book={book} />
+                    ))
+                )}
             </section>
             </div>
         </main>

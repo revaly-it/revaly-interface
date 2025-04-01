@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { UnifiedBook } from "@/interfaces/UnifiedBook";
 import BookCardSkeleton from "@/molecules/BookCardSkeleton";
 import BookCard from "../cards/BookCard";
-import { fetchHighlightsFromNYT } from "@/services/NYTBooksServices";
-import { mapNYTBookToUnified } from "@/mappers/BookMappers";
+import { mapGoogleBookToUnified } from "@/mappers/BookMappers";
+import { fetchLatestReleasesFromGoogle } from "@/services/GoogleBooksServices";
+import { filterBooksWithISBN } from "@/utils/filterValidGoogleBooks";
 
 
 export default function Highlights() {
@@ -39,8 +40,12 @@ export default function Highlights() {
 
     useEffect(() => {
         async function loadBooks() {
-        const data = await fetchHighlightsFromNYT();
-        const unifiedBooks = data.map(mapNYTBookToUnified);
+        const data = await fetchLatestReleasesFromGoogle(20);
+        
+        const validBooks = filterBooksWithISBN(data);
+        
+        const unifiedBooks = validBooks.map(mapGoogleBookToUnified);
+
         setBooks(unifiedBooks);
         }
 

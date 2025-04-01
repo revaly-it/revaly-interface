@@ -8,6 +8,7 @@ import BookCard from "../cards/BookCard";
 import { fetchLatestReleasesFromGoogle } from "@/services/GoogleBooksServices";
 import { UnifiedBook } from "@/interfaces/UnifiedBook";
 import { mapGoogleBookToUnified } from "@/mappers/BookMappers";
+import { filterBooksWithISBN } from "@/utils/filterValidGoogleBooks";
 
 export default function LatestReleases() {
     const [books, setBooks] = useState<UnifiedBook[]>([]);
@@ -40,7 +41,10 @@ export default function LatestReleases() {
     useEffect(() => {
         async function loadBooks() {
         const data = await fetchLatestReleasesFromGoogle(20);
-        const unifiedBooks = data.map(mapGoogleBookToUnified);
+        
+        const validBooks = filterBooksWithISBN(data);
+        
+        const unifiedBooks = validBooks.map(mapGoogleBookToUnified);
         setBooks(unifiedBooks);
         }
 
