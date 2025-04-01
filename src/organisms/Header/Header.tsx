@@ -1,5 +1,6 @@
 "use client";
 
+import ExploreButton from "@/molecules/ExploreButton";
 import SearchBar from "../searchBar/SearchBar";
 import UserMenu from "../userMenu/UserMenu";
 
@@ -9,7 +10,7 @@ export default function Header() {
             <div className="max-w-screen-xl mx-auto p-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 {/* Logo */}
                 <a
-                    href="https://flowbite.com"
+                    href="/home"
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
                     <img
@@ -23,7 +24,11 @@ export default function Header() {
                 </a>
 
                 {/* Search bar */}
-                <SearchBar />
+                <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 w-full md:w-auto">
+                    
+                    <SearchBar />
+                    <ExploreButton />
+                </div>
 
                 {/* User menu */}
                 <UserMenu />

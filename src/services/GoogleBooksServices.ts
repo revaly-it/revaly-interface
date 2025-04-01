@@ -50,6 +50,19 @@ export async function fetchBooksBetweenYears(startYear: number, endYear: number)
     return filteredBooks;
 }
 
+export async function fetchBookByISBNFromGoogle(isbn: string): Promise<GoogleBook | null> {
+    const url = buildGoogleBooksQuery.byISBN(isbn);
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.totalItems === 0) return null;
+
+    console.log('Response from Google Books:', data);
+
+    return data.items[0];
+}
+
 
 
 

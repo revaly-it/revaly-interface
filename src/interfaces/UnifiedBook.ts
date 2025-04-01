@@ -5,4 +5,5 @@ export interface UnifiedBook {
     description: string;
     image: string;
     infoLink: string;
+    isbn: string;
 }

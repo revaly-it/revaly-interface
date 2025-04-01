@@ -15,4 +15,6 @@ export const buildNYTQuery = {
     reviews: (isbn: string) => `${NYT_BASE_URL}reviews.json?isbn=${isbn}`,
     reviewsByAuthor: (author: string) => `${NYT_BASE_URL}reviews.json?author=${author}`,
     reviewsByTitle: (title: string) => `${NYT_BASE_URL}reviews.json?title=${title}`,
+    byISBN: (isbn: string) => `${NYT_BASE_URL}lists/best-sellers/history.json?isbn=${isbn}`,
+    byGenre: (genre: string) => `${NYT_BASE_URL}lists/current/${genre}.json`,
 };

@@ -61,9 +61,9 @@ export default function LatestReleases() {
                 </div>
             ) : (
                 <div ref={sliderRef} className="keen-slider pb-10">
-                {books.map((book) => (
-                    <BookCard key={book.id} book={book} />
-                ))}
+                    {books.map((book) => (
+                        <BookCard key={book.id} book={book} />
+                    ))}
                 </div>
             )}
         </section>

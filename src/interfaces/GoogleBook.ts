@@ -6,11 +6,15 @@ export interface GoogleBook {
         authors?: string[];
         description?: string;
         imageLinks?: {
-        thumbnail?: string;
+            thumbnail?: string;
         };
         infoLink?: string;
         publishedDate?: string;
         averageRating?: number;
         ratingsCount?: number;
+        industryIdentifiers?: {
+            type: string;
+            identifier: string;
+        }[];
     };
 }
