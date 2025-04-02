@@ -14,7 +14,7 @@ export default function UserMenu() {
             {showUserMenu && (
                 <div className="absolute right-0 mt-2 w-48 bg-zinc-800 border border-zinc-700 rounded-md shadow-lg py-2 z-50">
                 <a
-                    href="#"
+                    href="/profile"
                     className="block px-4 py-2 text-sm text-white hover:bg-zinc-700"
                 >
                     Profile
