@@ -29,7 +29,7 @@ export async function fetchBooksByGenre(genre: string, maxResults: number): Prom
 }
 
 export async function fetchBooksBetweenYears(startYear: number, endYear: number): Promise<GoogleBook[]> {
-    const url = buildGoogleBooksQuery.btBetweenYears();
+    const url = buildGoogleBooksQuery.byBetweenYears();
 
     const res = await fetch(url);
     const data = await res.json();
@@ -60,6 +60,17 @@ export async function fetchBookByISBNFromGoogle(isbn: string): Promise<GoogleBoo
 
     return data.items[0];
 }
+
+export async function fetchBooksByTerm(term: string, maxResults: number) {
+
+    const url = buildGoogleBooksQuery.byTerm(term, maxResults);
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    return data.items || [];
+}
+
 
 
 

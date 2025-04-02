@@ -19,6 +19,7 @@ export default async function BookDetailPage(props: {
     let book: UnifiedBook | null = null;
 
     const googleRaw = await fetchBookByISBNFromGoogle(id);
+
     if (googleRaw) book = mapGoogleBookToUnified(googleRaw);
 
     if (!book) return notFound();

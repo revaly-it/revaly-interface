@@ -6,5 +6,6 @@ export const buildGoogleBooksQuery = {
     byAuthor: (author: string) => `${GOOGLE_BOOKS_BASE_URL}?q=inauthor:${author}`,
     byPublisher: (publisher: string, maxResults: number) => `${GOOGLE_BOOKS_BASE_URL}?q=inpublisher:${encodeURIComponent(publisher)}&langRestrict=pt&maxResults=${maxResults}`,
     byNewests: (maxResults: number) => `${GOOGLE_BOOKS_BASE_URL}?q=*&orderBy=newest&langRestrict=pt&maxResults=${maxResults}`,
-    btBetweenYears: () => `${GOOGLE_BOOKS_BASE_URL}?q=*&orderBy=newest&langRestrict=pt&maxResults=40`,
+    byBetweenYears: () => `${GOOGLE_BOOKS_BASE_URL}?q=*&orderBy=newest&langRestrict=pt&maxResults=40`,
+    byTerm: (term: string, maxResults: number) => `${GOOGLE_BOOKS_BASE_URL}?q=${encodeURIComponent(term)}&maxResults=${maxResults}`,
 };
