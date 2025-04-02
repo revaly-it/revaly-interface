@@ -52,7 +52,7 @@ export default async function BookDetailPage(props: {
 
             <section className="mt-10 bg-zinc-800 rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-white mb-4">
-                Deixe sua avaliação
+                Write a Review
                 </h2>
 
                 <form className="space-y-4">
@@ -76,7 +76,7 @@ export default async function BookDetailPage(props: {
                     type="submit"
                     className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
                 >
-                    Enviar Avaliação
+                    Send Review
                 </button>
                 </form>
             </section>
